@@ -1,0 +1,17 @@
+.footer {
+  position: fixed;
+  bottom: 0;
+  height: 6.6rem;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.footerText {
+  color: #9495a5;
+  font-size: 1.4rem;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  letter-spacing: -0.194px;
+}
