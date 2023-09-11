@@ -1,9 +1,11 @@
 import { useState } from "react";
 import styles from "./ListItem.module.css";
+import { useTodo } from "../context/TodoContext";
 
 export default function ListItem({ data, isDark }) {
   const [hovered, setHovered] = useState(false);
   const [completed, setCompleted] = useState(data.completed);
+  const { deleteTodo, setTodoStatus } = useTodo();
 
   return (
     <div
@@ -14,37 +16,53 @@ export default function ListItem({ data, isDark }) {
       <div className={styles.listStatus}>
         <div
           className={styles.selectButton}
-          onClick={() => setCompleted(!completed)}
+          onClick={async () => {
+            setCompleted(!completed);
+            await setTodoStatus(data._id, !completed);
+          }}
         >
           {completed ? (
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="24"
-              height="24"
-              viewBox="0 0 24 24"
-              fill="none"
-            >
-              <circle cx="12" cy="12" r="11.5" fill="white" stroke="#E3E4F1" />
-              <circle cx="12" cy="12" r="12" fill="url(#paint0_linear_0_595)" />
-              <path
-                d="M8 12.3041L10.6959 15L16.6959 9"
-                stroke="white"
-                stroke-width="2"
-              />
-              <defs>
-                <linearGradient
-                  id="paint0_linear_0_595"
-                  x1="-12"
-                  y1="12"
-                  x2="12"
-                  y2="36"
-                  gradientUnits="userSpaceOnUse"
-                >
-                  <stop stop-color="#55DDFF" />
-                  <stop offset="1" stop-color="#C058F3" />
-                </linearGradient>
-              </defs>
-            </svg>
+            <div>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+              >
+                <circle
+                  cx="12"
+                  cy="12"
+                  r="11.5"
+                  fill="white"
+                  stroke="#E3E4F1"
+                />
+                <circle
+                  cx="12"
+                  cy="12"
+                  r="12"
+                  fill="url(#paint0_linear_0_595)"
+                />
+                <path
+                  d="M8 12.3041L10.6959 15L16.6959 9"
+                  stroke="white"
+                  stroke-width="2"
+                />
+                <defs>
+                  <linearGradient
+                    id="paint0_linear_0_595"
+                    x1="-12"
+                    y1="12"
+                    x2="12"
+                    y2="36"
+                    gradientUnits="userSpaceOnUse"
+                  >
+                    <stop stop-color="#55DDFF" />
+                    <stop offset="1" stop-color="#C058F3" />
+                  </linearGradient>
+                </defs>
+              </svg>
+            </div>
           ) : (
             <div>
               <svg
@@ -71,7 +89,11 @@ export default function ListItem({ data, isDark }) {
         </p>
       </div>
       {hovered && (
-        <div>
+        <div
+          onClick={() => {
+            deleteTodo(data._id);
+          }}
+        >
           <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18">
             <path
               fill="#494C6B"

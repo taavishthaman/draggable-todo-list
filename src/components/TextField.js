@@ -1,6 +1,19 @@
+import { useRef } from "react";
+import { useTodo } from "../context/TodoContext";
 import styles from "./TextField.module.css";
 
 export default function TextField({ isDark }) {
+  const { createTodo } = useTodo();
+  const inputRef = useRef();
+  async function createNewTodo(e) {
+    if (e.code === "Enter") {
+      const name = inputRef.current.value;
+      await createTodo({
+        name,
+      });
+      inputRef.current.value = "";
+    }
+  }
   return (
     <div className={styles.textFieldContainer}>
       <div className={styles.textFieldDiv}>
@@ -21,6 +34,8 @@ export default function TextField({ isDark }) {
             isDark ? styles.textFieldDark : ""
           }`}
           placeholder="Create a new todo..."
+          onKeyDown={(e) => createNewTodo(e)}
+          ref={inputRef}
         ></input>
       </div>
     </div>

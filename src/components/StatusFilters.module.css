@@ -13,6 +13,10 @@
   cursor: pointer;
 }
 
+.filterSelected {
+  color: #3a7cfd;
+}
+
 @media (max-width: 38em) {
   .filterButton {
     font-size: 1.2rem;
