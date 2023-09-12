@@ -2,9 +2,11 @@
   position: fixed;
   bottom: 0;
   height: 6.6rem;
-  width: 100%;
+  width: 100vw;
   display: flex;
   justify-content: center;
+  flex-direction: column;
+  text-align: center;
 }
 
 .footerText {
@@ -14,6 +16,11 @@
   font-weight: 400;
   line-height: normal;
   letter-spacing: -0.194px;
-  text-align: center;
   margin-bottom: 0.5rem;
+}
+
+@media (max-width: 38em) {
+  .footerText {
+    font-size: 1.2rem;
+  }
 }
