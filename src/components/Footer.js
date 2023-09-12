@@ -5,7 +5,7 @@ export default function Footer() {
     <footer className={styles.footer}>
       <p className={styles.footerText}>Drag and drop to reorder list</p>
       <p className={styles.footerText}>
-        Please wait for 1-2 minutes for server to boot up.
+        Please wait 1-2 minutes for server to boot up.
       </p>
     </footer>
   );
