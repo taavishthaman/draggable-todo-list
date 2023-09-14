@@ -1,7 +1,7 @@
 import { useEffect, useContext, useReducer, createContext } from "react";
 
 const TodoContext = createContext();
-const BASE_URL = "https://draggable-todo-api.onrender.com/api/v1/todos";
+const BASE_URL = "https://todo-backend-dun-nu.vercel.app/api/v1/todos";
 
 const initialState = {
   todoData: [],
